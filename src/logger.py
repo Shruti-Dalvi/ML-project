@@ -1,6 +1,4 @@
-import logging
-import os
-from datetime import datetime
+"""
 
 # Create the log file name with timestamp
 LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
@@ -27,4 +25,30 @@ logging.basicConfig(
 
 # Example log entry
 logging.info("Logging has started")
+"""
+
+
+
+
+
+
+
+# src/logger.py
+
+import logging
+import os
+
+# Define the default log file path
+LOG_FILE_PATH = 'logs/data_ingestion.log'
+
+def setup_logging(log_file=LOG_FILE_PATH):
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
+    logging.basicConfig(
+        filename=log_file,
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+
+# Provide access to the logger instance
+logger = logging.getLogger()
 
